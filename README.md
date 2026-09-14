@@ -10,5 +10,5 @@ When clone project from repo <br />
 - copy .env.example .env (when we cloned it not have .env file ) this command use to create .env file to your project
 - php artisan key:generate (it mean include LARAVEL_APP_KEY : from gitignore file )
 - set up or change db name , (db username password if you have )
-- php artisan migrate
+- php artisan migrate <br />
 do this step by step
