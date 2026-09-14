@@ -7,7 +7,7 @@ When clone project from repo <br />
 - npm install (for node modules, if you want) 
 
 // step 2 : use this command :
-- copy .env.example .env (when we cloned it not have .env file ) this use to create .env file to your project
+- copy .env.example .env (when we cloned it not have .env file ) this command use to create .env file to your project
 - php artisan key:generate (it mean include LARAVEL_APP_KEY : from gitignore file )
 - set up or change db name , (db username password if you have )
 - php artisan migrate
