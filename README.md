@@ -1,6 +1,6 @@
 https://github.com/cokerr9/gh_system.git
 ============================
-When clone project from repo /
+When clone project from repo <br />
 // step 1: use this command : we need to install php dependencies
 - composer install 
 - npm install (for node modules, if you want)
