@@ -1,4 +1,4 @@
-## When cloning a project from a repo <br />
+## When you clone a project from a repo <br />
 ==================================== <br />
 
 ==> Step 1:  We need to install PHP dependencies <br />
