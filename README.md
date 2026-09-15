@@ -1,5 +1,5 @@
 ============================
-#When clone project from repo <br />
+# When clone project from repo <br />
 // step 1:  we need to install php dependencies <br />
 // use this command : <br />
 - composer install 
