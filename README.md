@@ -1,5 +1,5 @@
-=================================
-### When cloning a project from a repo <br />
+## When cloning a project from a repo <br />
+==============================================
 ==> Step 1:  We need to install PHP dependencies <br />
 = Use this command : <br />
 - composer install 
