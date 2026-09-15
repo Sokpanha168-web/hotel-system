@@ -10,7 +10,7 @@
 = Use this command : <br />
 - copy .env.example .env (when we cloned it, it doesn't have a .env file; use this command to create a .env file in your project ) <br />
 - php artisan key:generate (this includes LARAVEL_APP_KEY in the .gitignore file ) <br />
-== Set up or change the DB name (DB username/password if you have them)
+- Set up or change the DB name (DB username/password if you have them)
 - php artisan migrate <br />
 
 Do this step by step
