@@ -12,4 +12,7 @@
 - php artisan key:generate (this includes LARAVEL_APP_KEY in the .gitignore file ) <br />
 == Set up or change the DB name (DB username/password if you have them)
 - php artisan migrate <br />
+
 Do this step by step
+
+Made with a smile 🥰.
