@@ -1,9 +1,10 @@
 ## When cloning a project from a repo <br />
-===================================== <br />
+==================================== <br />
+
 ==> Step 1:  We need to install PHP dependencies <br />
 = Use this command : <br />
 - composer install 
-- npm install (for node modules, if you want) 
+- npm install (for Node modules, if you want) 
 
 ==> Step 2: We need to set up <br />
 = Use this command : <br />
