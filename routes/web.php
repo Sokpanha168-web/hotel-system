@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +43,16 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        // Room Status Grid
+        // Room Management & Status Grid (admin, receptionist)
+        Route::middleware('role:admin,receptionist')->group(function () {
+            Route::get('/rooms/create', [RoomController::class, 'create'])->name('rooms.create');
+            Route::post('/rooms', [RoomController::class, 'store'])->name('rooms.store');
+            Route::get('/rooms/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+            Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
+            Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+            Route::patch('/rooms/{id}/status', [RoomController::class, 'updateStatus'])->name('rooms.status');
+        });
         Route::get('/rooms/status-grid', [RoomController::class, 'statusGrid'])->name('rooms.grid');
-        Route::patch('/rooms/{id}/status', [RoomController::class, 'updateStatus'])->name('rooms.status');
 
         // Reservations
         Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
@@ -52,4 +61,14 @@ Route::prefix('admin')
         Route::post('/reservations/{id}/services', [ReservationController::class, 'addService'])->name('reservations.services');
         Route::patch('/reservations/{id}/check-out', [ReservationController::class, 'checkOut'])->name('reservations.check-out');
         Route::get('/reservations/{id}/invoice', [ReservationController::class, 'invoice'])->name('reservations.invoice');
+
+        // Reports & Analytics (Admin ONLY - Receptionist cannot access)
+        Route::middleware('role:admin')->group(function () {
+            Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+        });
+
+        // Staff User Management (Admin ONLY)
+        Route::middleware('role:admin')->group(function () {
+            Route::resource('users', UserController::class);
+        });
     });

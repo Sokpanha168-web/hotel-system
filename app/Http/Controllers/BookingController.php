@@ -26,11 +26,12 @@ class BookingController extends Controller
      */
     public function index(): View
     {
-        $roomTypes = RoomType::withCount('rooms')->get();
+        $roomTypes = RoomType::with(['rooms'])->withCount('rooms')->get();
+        $allRooms = Room::with('roomType')->orderBy('floor')->orderBy('room_number')->get();
         $services = Service::all();
         $totalRooms = Room::count();
 
-        return view('welcome', compact('roomTypes', 'services', 'totalRooms'));
+        return view('welcome', compact('roomTypes', 'allRooms', 'services', 'totalRooms'));
     }
 
     /**
@@ -42,7 +43,7 @@ class BookingController extends Controller
         $checkOut = $request->query('check_out', Carbon::tomorrow()->toDateString());
         $guests = (int) $request->query('guests', 1);
 
-        $roomTypesQuery = RoomType::query();
+        $roomTypesQuery = RoomType::with(['rooms']);
 
         if ($guests > 1) {
             $roomTypesQuery->where('capacity', '>=', $guests);
@@ -55,7 +56,15 @@ class BookingController extends Controller
             return $type;
         });
 
-        return view('rooms.index', compact('roomTypes', 'checkIn', 'checkOut', 'guests'));
+        $roomsQuery = Room::with('roomType');
+        if ($guests > 1) {
+            $roomsQuery->whereHas('roomType', function ($q) use ($guests) {
+                $q->where('capacity', '>=', $guests);
+            });
+        }
+        $allRooms = $roomsQuery->orderBy('floor')->orderBy('room_number')->get();
+
+        return view('rooms.index', compact('roomTypes', 'allRooms', 'checkIn', 'checkOut', 'guests'));
     }
 
     /**

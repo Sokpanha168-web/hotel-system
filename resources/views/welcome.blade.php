@@ -117,7 +117,7 @@
             <div class="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col group">
                 <!-- Image with Price Badge -->
                 <div class="relative h-64 overflow-hidden bg-stone-100">
-                    <img src="{{ $type->image ?? 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80' }}" 
+                    <img src="{{ $type->image_url }}" 
                          alt="{{ $type->name }}" 
                          class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute top-4 right-4 bg-stone-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white text-xs font-semibold">
@@ -170,6 +170,61 @@
             </div>
         @endforelse
     </div>
+
+    <!-- Individual Rooms Fleet Grid -->
+    @if(isset($allRooms) && $allRooms->isNotEmpty())
+        <div class="mt-20 pt-16 border-t border-stone-200">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Guest Room Fleet</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Explore Individual Guest Rooms</h3>
+                    <p class="text-stone-500 text-sm mt-1">Directly select and book specific room numbers across all floors</p>
+                </div>
+                <a href="{{ route('rooms.index') }}" class="text-sm font-bold text-amber-800 hover:text-amber-900 inline-flex items-center gap-1">
+                    <span>View All Rooms & Suites</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach($allRooms->take(8) as $room)
+                    <div class="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-lg transition duration-200 flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-48 bg-stone-100 overflow-hidden">
+                                <img src="{{ $room->image_url }}" alt="Room {{ $room->room_number }}" class="w-full h-full object-cover">
+                                <div class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-white text-xs font-bold">
+                                    Room {{ $room->room_number }}
+                                </div>
+                                <div class="absolute top-3 right-3">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider {{ $room->status === 'available' ? 'bg-emerald-600 text-white' : 'bg-stone-500 text-white' }}">
+                                        {{ $room->status }}
+                                    </span>
+                                </div>
+                                <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-0.5 rounded text-xs font-semibold text-stone-700">
+                                    Floor {{ $room->floor }}
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif font-bold text-stone-900 text-base mb-1">{{ $room->roomType->name }}</h4>
+                                <p class="text-xs text-stone-500 mb-3">${{ number_format($room->roomType->base_price, 2) }} / night • Up to {{ $room->roomType->capacity }} Guests</p>
+                            </div>
+                        </div>
+                        <div class="p-4 pt-0">
+                            @if($room->status === 'available')
+                                <a href="{{ route('booking.create', ['room' => $room->id]) }}" class="block w-full text-center py-2 px-3 rounded-xl text-xs font-bold text-white bg-amber-700 hover:bg-amber-800 transition shadow-xs">
+                                    Book Room {{ $room->room_number }}
+                                </a>
+                            @else
+                                <button disabled class="block w-full text-center py-2 px-3 rounded-xl text-xs font-bold text-stone-400 bg-stone-100 cursor-not-allowed">
+                                    Currently {{ ucfirst($room->status) }}
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
 </section>
 
 <!-- Amenities & Guest Experience -->

@@ -18,7 +18,7 @@
         <div class="lg:col-span-8 space-y-8">
             <!-- Hero Image -->
             <div class="rounded-2xl overflow-hidden bg-stone-100 h-96 relative border border-stone-200">
-                <img src="{{ $roomType->image ?? 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80' }}" 
+                <img src="{{ $roomType->image_url }}" 
                      alt="{{ $roomType->name }}" 
                      class="w-full h-full object-cover">
                 <div class="absolute bottom-4 left-4 bg-stone-900/80 backdrop-blur-md px-4 py-2 rounded-xl text-white">
@@ -64,6 +64,52 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Specific Rooms Available in this Category -->
+            @if($roomType->rooms->isNotEmpty())
+                <div class="bg-white rounded-2xl border border-stone-200 p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-serif font-bold text-stone-900">Rooms in this Category</h3>
+                            <p class="text-xs text-stone-500 mt-0.5">Select and reserve a specific room number or floor</p>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-stone-100 text-stone-700">
+                            {{ $roomType->rooms->count() }} Total Rooms
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        @foreach($roomType->rooms as $room)
+                            <div class="p-4 rounded-xl border border-stone-200 hover:border-amber-400 bg-stone-50/50 hover:bg-white transition flex items-center justify-between gap-4">
+                                <div class="flex items-center space-x-3.5">
+                                    <div class="w-16 h-16 rounded-lg overflow-hidden bg-stone-200 flex-shrink-0 border border-stone-200">
+                                        <img src="{{ $room->image_url }}" alt="Room {{ $room->room_number }}" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-bold text-stone-900 text-sm">Room {{ $room->room_number }}</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider {{ $room->status === 'available' ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-700' }}">
+                                                {{ $room->status }}
+                                            </span>
+                                        </div>
+                                        <span class="text-xs text-stone-500 block">Floor {{ $room->floor }}</span>
+                                    </div>
+                                </div>
+
+                                @if($room->status === 'available')
+                                    <a href="{{ route('booking.create', ['room' => $room->id]) }}" class="px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-amber-700 hover:bg-amber-800 transition shadow-xs flex-shrink-0">
+                                        Book This
+                                    </a>
+                                @else
+                                    <span class="text-xs text-stone-400 font-medium px-2 py-1 flex-shrink-0">
+                                        {{ ucfirst($room->status) }}
+                                    </span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
 
             <!-- Guest House Policies -->
             <div class="bg-white rounded-2xl border border-stone-200 p-8 text-sm text-stone-600">

@@ -23,7 +23,7 @@
 
     <!-- Sidebar Navigation -->
     <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed md:sticky top-0 inset-y-0 left-0 z-50 w-72 bg-slate-900 text-slate-200 flex flex-col justify-between transition-transform duration-300 ease-in-out md:translate-x-0 shadow-xl md:shadow-none h-screen flex-shrink-0">
-        <div>
+        <div class="flex-1 overflow-y-auto">
             <!-- Brand -->
             <div class="h-20 flex items-center justify-between px-6 border-b border-slate-800">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3">
@@ -68,6 +68,24 @@
                     <span>All Reservations</span>
                 </a>
 
+                @if(auth()->user()?->canViewReports())
+                    <a href="{{ route('admin.reports.index') }}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('admin.reports.*') ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>Reports & Charts</span>
+                    </a>
+                @endif
+
+                @if(auth()->user()?->isAdmin())
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('admin.users.*') ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <span>User Management</span>
+                    </a>
+                @endif
+
                 <div class="pt-4 pb-2">
                     <div class="border-t border-slate-800"></div>
                 </div>
@@ -83,7 +101,7 @@
                     <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <span>View Public Website</span>
+                    <span>Guest Website &rarr;</span>
                 </a>
             </nav>
         </div>
@@ -97,7 +115,7 @@
                     </div>
                     <div class="truncate">
                         <p class="text-sm font-semibold text-white truncate">{{ Auth::user()->name ?? 'Staff' }}</p>
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider {{ (Auth::user()->role ?? '') === 'admin' ? 'bg-amber-900/60 text-amber-300' : 'bg-blue-900/60 text-blue-300' }}">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider {{ (Auth::user()->role ?? '') === 'admin' ? 'bg-purple-900/60 text-purple-300 border border-purple-800' : 'bg-blue-900/60 text-blue-300 border border-blue-800' }}">
                             {{ Auth::user()->role ?? 'Staff' }}
                         </span>
                     </div>
