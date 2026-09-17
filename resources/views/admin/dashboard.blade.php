@@ -93,9 +93,17 @@
                 <h3 class="text-base font-bold text-slate-900">Room Fleet Distribution</h3>
                 <p class="text-xs text-slate-500">Live operational status across all {{ $totalRooms }} rooms</p>
             </div>
-            <a href="{{ route('admin.rooms.grid') }}" class="text-xs font-bold text-amber-700 hover:text-amber-800 transition">
-                Open Full Visual Grid &rarr;
-            </a>
+            <div class="flex items-center space-x-3">
+                <a href="{{ route('admin.reports.index') }}" class="text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
+                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <span>Reports & Charts</span>
+                </a>
+                <a href="{{ route('admin.rooms.grid') }}" class="text-xs font-bold text-amber-700 hover:text-amber-800 transition">
+                    Visual Grid &rarr;
+                </a>
+            </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5">

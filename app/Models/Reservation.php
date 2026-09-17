@@ -62,6 +62,11 @@ class Reservation extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function invoice(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Invoice::class);
+    }
+
     public function getTotalPaidAttribute(): float
     {
         return (float) $this->payments->where('payment_status', 'paid')->sum('amount');

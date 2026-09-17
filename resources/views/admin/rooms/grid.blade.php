@@ -16,8 +16,16 @@
 
     <!-- Filter & Legend Bar -->
     <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <!-- Floor Filter Tabs -->
+        <!-- Floor Filter Tabs and Actions -->
         <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('admin.rooms.create') }}" 
+               class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-xs transition flex items-center mr-2">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add Room
+            </a>
+            
             <a href="{{ route('admin.rooms.grid') }}" 
                class="px-4 py-2 rounded-xl text-xs font-bold transition {{ empty($selectedFloor) ? 'bg-amber-600 text-white shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">
                 All Floors ({{ $statusCounts['total'] }})
@@ -85,6 +93,13 @@
                         </span>
                     </div>
 
+                    <!-- Room Image if exists -->
+                    @if($room->image)
+                        <div class="mt-2 mb-3">
+                            <img src="{{ asset('storage/' . $room->image) }}" alt="Room {{ $room->room_number }}" class="w-full h-32 object-cover rounded-xl border border-slate-200 shadow-sm">
+                        </div>
+                    @endif
+
                     <!-- Room Type & Rate -->
                     <div class="text-xs font-medium text-slate-600 mb-3">
                         <span class="font-bold text-slate-900">{{ $room->roomType->name }}</span>
@@ -102,25 +117,37 @@
                 </div>
 
                 <!-- Footer Action Buttons -->
-                <div class="mt-5 pt-3 border-t border-black/5 flex items-center justify-between">
-                    <button type="button" 
-                            @click="openStatusModal({{ Js::from($room) }})"
-                            class="text-xs font-bold text-slate-700 hover:text-slate-900 px-2.5 py-1.5 rounded-lg bg-white/90 border border-slate-300 hover:bg-white shadow-2xs transition flex items-center space-x-1">
-                        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                        <span>Change Status</span>
-                    </button>
+                <div class="mt-4 pt-3 border-t border-black/5 space-y-2">
+                    <!-- Management Actions Grid -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" 
+                                @click="openStatusModal({{ Js::from($room) }})"
+                                class="w-full text-xs font-bold text-slate-700 hover:text-slate-900 py-1.5 px-2 rounded-lg bg-white/90 border border-slate-300 hover:bg-white shadow-2xs transition flex items-center justify-center space-x-1">
+                            <svg class="w-3.5 h-3.5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            <span>Status</span>
+                        </button>
 
+                        <a href="{{ route('admin.rooms.edit', $room->id) }}" 
+                           class="w-full text-xs font-bold text-slate-700 hover:text-amber-800 py-1.5 px-2 rounded-lg bg-white/90 border border-slate-300 hover:bg-white shadow-2xs transition flex items-center justify-center space-x-1">
+                            <svg class="w-3.5 h-3.5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                            <span>Edit</span>
+                        </a>
+                    </div>
+
+                    <!-- Contextual Booking / Dossier Link -->
                     @if($room->status === 'available')
                         <a href="{{ route('booking.create', ['room_id' => $room->id, 'room_type_id' => $room->room_type_id]) }}" 
-                           class="text-xs font-bold text-emerald-800 hover:text-emerald-900 hover:underline">
-                            Book &rarr;
+                           class="block w-full text-center py-1.5 px-2 rounded-lg text-xs font-bold text-emerald-800 bg-emerald-100/60 hover:bg-emerald-100 border border-emerald-300/80 transition">
+                            Book Room &rarr;
                         </a>
                     @elseif($room->status === 'occupied' && $activeRes)
                         <a href="{{ route('admin.reservations.show', $activeRes->id) }}" 
-                           class="text-xs font-bold text-rose-800 hover:text-rose-900 hover:underline">
-                            Dossier &rarr;
+                           class="block w-full text-center py-1.5 px-2 rounded-lg text-xs font-bold text-rose-800 bg-rose-100/60 hover:bg-rose-100 border border-rose-300/80 transition">
+                            View Dossier &rarr;
                         </a>
                     @endif
                 </div>

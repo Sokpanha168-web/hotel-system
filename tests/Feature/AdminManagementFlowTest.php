@@ -178,4 +178,54 @@ class AdminManagementFlowTest extends TestCase
         $invoiceResponse->assertSee('PAID IN FULL');
         $invoiceResponse->assertSee($this->reservation->booking_code);
     }
+
+    public function test_receptionist_cannot_access_reports_or_user_management(): void
+    {
+        $receptionist = User::create([
+            'name' => 'Receptionist User',
+            'email' => 'receptionist_test@guesthouse.com',
+            'password' => Hash::make('password'),
+            'role' => 'receptionist',
+        ]);
+
+        $reportsResponse = $this->actingAs($receptionist)->get(route('admin.reports.index'));
+        $reportsResponse->assertStatus(403);
+
+        $usersResponse = $this->actingAs($receptionist)->get(route('admin.users.index'));
+        $usersResponse->assertStatus(403);
+    }
+
+    public function test_admin_can_access_reports_and_user_management(): void
+    {
+        $reportsResponse = $this->actingAs($this->admin)->get(route('admin.reports.index'));
+        $reportsResponse->assertStatus(200);
+
+        $usersResponse = $this->actingAs($this->admin)->get(route('admin.users.index'));
+        $usersResponse->assertStatus(200);
+    }
+
+    public function test_admin_can_create_user_with_allowed_roles_only(): void
+    {
+        // Receptionist role succeeds
+        $res1 = $this->actingAs($this->admin)->post(route('admin.users.store'), [
+            'name' => 'Front Desk One',
+            'email' => 'fd1@guesthouse.com',
+            'role' => 'receptionist',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+        ]);
+        $res1->assertRedirect(route('admin.users.index'));
+        $this->assertDatabaseHas('users', ['email' => 'fd1@guesthouse.com', 'role' => 'receptionist']);
+
+        // Accounting role is rejected
+        $res2 = $this->actingAs($this->admin)->post(route('admin.users.store'), [
+            'name' => 'Invalid Accounting',
+            'email' => 'acc_invalid@guesthouse.com',
+            'role' => 'accounting',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+        ]);
+        $res2->assertSessionHasErrors(['role']);
+        $this->assertDatabaseMissing('users', ['email' => 'acc_invalid@guesthouse.com']);
+    }
 }

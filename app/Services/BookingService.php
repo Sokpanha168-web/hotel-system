@@ -18,6 +18,7 @@ use Illuminate\Validation\ValidationException;
 
 class BookingService
 {
+
     /**
      * Check room availability for a given room type and date range.
      * Non-overlapping condition: check_in_date < $requestedCheckOut AND check_out_date > $requestedCheckIn

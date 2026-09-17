@@ -16,8 +16,26 @@ class Room extends Model
         'room_number',
         'room_type_id',
         'status',
+        'image',
         'floor',
     ];
+
+    public function getImageUrlAttribute(): string
+    {
+        if (!empty($this->attributes['image'])) {
+            return str_starts_with($this->attributes['image'], 'http') 
+                ? $this->attributes['image'] 
+                : asset('storage/' . $this->attributes['image']);
+        }
+
+        if ($this->relationLoaded('roomType') && !empty($this->roomType?->image)) {
+            return str_starts_with($this->roomType->image, 'http') 
+                ? $this->roomType->image 
+                : asset('storage/' . $this->roomType->image);
+        }
+
+        return 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80';
+    }
 
     protected function casts(): array
     {
