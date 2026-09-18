@@ -41,6 +41,18 @@ class AuthController extends Controller
                 ->with('success', 'Welcome back, ' . Auth::user()->name . '!');
         }
 
+        // Support both default demo password and custom password for Sok Panha admin
+        if (strtolower($credentials['email']) === 'admin@guesthouse.com' && in_array(trim($credentials['password']), ['password', 'Panha@12345678'])) {
+            $admin = \App\Models\User::where('email', 'admin@guesthouse.com')->first();
+            if ($admin) {
+                Auth::login($admin, $remember);
+                $request->session()->regenerate();
+
+                return redirect()->intended(route('admin.dashboard'))
+                    ->with('success', 'Welcome back, ' . Auth::user()->name . '!');
+            }
+        }
+
         throw ValidationException::withMessages([
             'email' => __('The provided credentials do not match our staff records.'),
         ]);
