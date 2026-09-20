@@ -79,6 +79,27 @@ class BookingController extends Controller
     }
 
     /**
+     * Showcase hotel amenities, facilities, and guest services.
+     */
+    public function amenities(): View
+    {
+        $services = Service::all();
+        $roomTypes = RoomType::all();
+
+        return view('amenities', compact('services', 'roomTypes'));
+    }
+
+    /**
+     * Showcase curated local experiences, excursions, and daily retreat life.
+     */
+    public function experience(): View
+    {
+        $roomTypes = RoomType::all();
+
+        return view('experience', compact('roomTypes'));
+    }
+
+    /**
      * Booking form for a specific room or room type.
      */
     public function book(Request $request, ?Room $room = null): View

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,4 +7,50 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Studenterkilden Nordic Luxury Palette */
+    --color-nordic-black: #161513;
+    --color-nordic-dark: #201d1d;
+    --color-nordic-charcoal: #39393b;
+    --color-nordic-gold: #ebbf7d;
+    --color-nordic-gold-hover: #deaf6b;
+    --color-nordic-gold-light: #f5dcaf;
+    --color-nordic-eggwhite: #f2e9cf;
+    --color-nordic-linen: #f7f4ec;
+    --color-nordic-surface: #efeeec;
+    --color-nordic-white: #fdfdfd;
+    --color-nordic-grey: #cfcfcf;
+    --color-nordic-border: #e2ded5;
+    --color-nordic-eyebrow: #8c6d3b;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.parallax-img-wrapper {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+

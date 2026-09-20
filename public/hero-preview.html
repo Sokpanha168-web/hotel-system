@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#09090b] text-zinc-100 scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NexusAI — High-End Modern Hero Section Preview</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        zinc: {
+                            950: '#09090b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        body {
+            font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+            background-color: #09090b;
+        }
+        pre, code, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col bg-[#09090b] text-zinc-100 antialiased selection:bg-indigo-500/30 selection:text-indigo-200" x-data="{ mobileMenu: false }">
+
+    <!-- Top Scroll Progress Bar (Driven by Motion.dev) -->
+    <div class="fixed top-0 left-0 right-0 h-[2px] bg-zinc-800/60 z-50 pointer-events-none">
+        <div id="scroll-progress-bar" class="h-full w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-400 origin-left scale-x-0 transition-transform duration-75"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-violet-600 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/40 transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-lg tracking-tight text-white group-hover:text-zinc-200 transition">NexusAI</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/30">v2.4</span>
+                        </div>
+                        <span class="text-[11px] text-zinc-500 block leading-tight">Autonomous Neural Engine</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-400">
+                    <a href="#features" class="hover:text-white transition">Features</a>
+                    <a href="#benchmarks" class="hover:text-white transition">Benchmarks</a>
+                    <a href="#architecture" class="hover:text-white transition">Architecture</a>
+                    <a href="/" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-amber-300 hover:border-amber-500/40 transition">
+                        <span>🏨 Hotel System Portal</span>
+                    </a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://github.com" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 rounded-lg transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                        <span>Star 14.8k</span>
+                    </a>
+
+                    <a href="#hero-section" class="px-4 py-2 text-xs font-semibold text-zinc-950 bg-white hover:bg-zinc-200 rounded-lg shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all">
+                        Launch Engine
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- ================================================================= -->
+        <!-- HERO SECTION (TAILWIND CSS & MOTION.DEV) -->
+        <!-- ================================================================= -->
+        <section id="hero-section" class="relative min-h-screen bg-[#09090b] text-zinc-100 overflow-hidden pt-24 sm:pt-28 pb-36">
+            
+            <!-- Fine Tech Dot Grid Matrix Overlay -->
+            <div class="absolute inset-0 z-0 opacity-25 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+            <!-- Top Soft Radial Lighting Sheen -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[420px] bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.12),transparent_70%)] pointer-events-none z-0"></div>
+
+            <!-- Subtle Ambient Glow Mesh (Driven by Motion.dev Scroll Parallax) -->
+            <div id="ambient-glow-mesh" class="absolute top-44 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] sm:w-[920px] h-[480px] sm:h-[580px] bg-gradient-to-tr from-indigo-600/30 via-violet-600/25 to-fuchsia-600/15 blur-[120px] rounded-full pointer-events-none z-0 transition-opacity duration-300"></div>
+
+            <!-- Secondary Under-Card Soft Ambient Glow -->
+            <div class="absolute top-[680px] left-1/2 -translate-x-1/2 w-[620px] h-[340px] bg-violet-600/15 blur-[140px] rounded-full pointer-events-none z-0"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Content Header Container -->
+                <div class="text-center max-w-4xl mx-auto flex flex-col items-center">
+                    
+                    <!-- 1. Pill Badge -->
+                    <div id="hero-badge" class="mb-8 opacity-0">
+                        <a href="#features" class="group relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-medium text-zinc-300 bg-zinc-900/80 border border-indigo-500/30 hover:border-indigo-400/60 shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:shadow-[0_0_25px_rgba(99,102,241,0.3)] backdrop-blur-md transition-all duration-300">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                            </span>
+                            <span class="tracking-wide">New Feature v2.0 Released -></span>
+                            <svg class="w-3.5 h-3.5 text-zinc-400 group-hover:text-white group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- 2. Hero Headline with Gradient Text Effect -->
+                    <h1 id="hero-headline" class="opacity-0 text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                        <span class="bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent block">
+                            The Autonomous AI Engine
+                        </span>
+                        <span class="bg-gradient-to-r from-indigo-200 via-zinc-100 to-zinc-400 bg-clip-text text-transparent block mt-1 sm:mt-2">
+                            for Modern Infrastructure.
+                        </span>
+                    </h1>
+
+                    <!-- 3. Subheadline with Max-Width for Readability -->
+                    <p id="hero-subheadline" class="opacity-0 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-zinc-400 font-normal leading-relaxed text-balance mb-10">
+                        Deploy intelligent agents, automate real-time hospitality workflows, and scale high-throughput neural APIs with microsecond latency and zero cold starts.
+                    </p>
+
+                    <!-- 4. CTA Action Area -->
+                    <div id="hero-ctas" class="opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                        <!-- Primary High-Contrast CTA Button -->
+                        <a href="#features" class="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-semibold text-zinc-950 bg-white hover:bg-zinc-100 shadow-[0_0_30px_rgba(255,255,255,0.22)] hover:shadow-[0_0_40px_rgba(255,255,255,0.38)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group">
+                            <span>Get Started Free</span>
+                            <svg class="w-4 h-4 text-zinc-700 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+
+                        <!-- Secondary Ghost Button with Hover Border Glow -->
+                        <a href="#architecture" class="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-medium text-zinc-300 hover:text-white bg-zinc-900/50 hover:bg-zinc-900/80 border border-zinc-800 hover:border-violet-500/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.3)] backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>Read Architecture Doc</span>
+                        </a>
+                    </div>
+
+                    <!-- Terminal Quick-Install Pill with Copy Feedback -->
+                    <div class="mt-7 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-zinc-900/40 border border-zinc-800/80 backdrop-blur-md text-xs font-mono text-zinc-400 group"
+                         x-data="{ copied: false }">
+                        <span class="text-indigo-400 select-none">$</span>
+                        <span class="text-zinc-200">npm i @nexus/ai-engine</span>
+                        <button @click="navigator.clipboard.writeText('npm i @nexus/ai-engine'); copied = true; setTimeout(() => copied = false, 2000)" 
+                                type="button" 
+                                class="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 transition" 
+                                title="Copy to clipboard">
+                            <svg x-show="!copied" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <svg x-show="copied" x-cloak class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+                        <span x-show="copied" x-cloak class="text-[11px] text-emerald-400 font-sans font-medium">Copied!</span>
+                    </div>
+
+                </div>
+
+                <!-- 5. Preview Mockup Card Underneath with Glassmorphism -->
+                <div class="mt-16 sm:mt-24 relative max-w-6xl mx-auto" x-data="{ activeTab: 'developer' }">
+                    
+                    <!-- Floating Parallax Micro-Badges (Driven by Motion.dev scroll) -->
+                    <div data-parallax-depth="22" class="floating-badge opacity-0 hidden lg:flex absolute -top-8 -left-6 z-20 items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-zinc-900/80 border border-white/10 backdrop-blur-xl shadow-xl shadow-black/40 text-xs font-medium text-zinc-200">
+                        <div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
+                        <span>⚡ Latency: <strong>8.4ms</strong> edge</span>
+                    </div>
+
+                    <div data-parallax-depth="30" class="floating-badge opacity-0 hidden lg:flex absolute -top-4 -right-6 z-20 items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-zinc-900/80 border border-white/10 backdrop-blur-xl shadow-xl shadow-black/40 text-xs font-medium text-zinc-200">
+                        <span class="text-indigo-400">🤖</span>
+                        <span>Active Agents: <strong>1,482 mesh</strong></span>
+                    </div>
+
+                    <div data-parallax-depth="18" class="floating-badge opacity-0 hidden lg:flex absolute -bottom-6 right-12 z-20 items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-zinc-900/80 border border-white/10 backdrop-blur-xl shadow-xl shadow-black/40 text-xs font-medium text-zinc-200">
+                        <span class="text-violet-400">🛡️</span>
+                        <span>Zero-Trust Micro-Enclave</span>
+                    </div>
+
+                    <!-- The Main Glassmorphism Card (Motion.dev 3D Perspective Tilt on Scroll) -->
+                    <div id="hero-mockup-card" class="opacity-0 relative rounded-2xl sm:rounded-3xl bg-zinc-900/60 backdrop-blur-xl border border-white/10 shadow-[0_20px_70px_rgba(0,0,0,0.7)] shadow-indigo-950/40 overflow-hidden transform-gpu will-change-transform">
+                        
+                        <!-- Window Chrome Title Bar -->
+                        <div class="px-5 py-3.5 bg-zinc-950/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+                            
+                            <!-- macOS Traffic Lights & Title -->
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-rose-500/80 hover:opacity-100 transition cursor-pointer"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500/80 hover:opacity-100 transition cursor-pointer"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500/80 hover:opacity-100 transition cursor-pointer"></div>
+                                </div>
+
+                                <div class="h-4 w-[1px] bg-zinc-800"></div>
+
+                                <div class="flex items-center gap-2 text-xs font-mono text-zinc-400">
+                                    <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                    <span class="text-zinc-300 font-semibold">nexus-cluster-v2</span>
+                                    <span class="text-zinc-600">/</span>
+                                    <span class="text-zinc-400" x-text="activeTab === 'developer' ? 'mesh-runtime.ts' : 'hotel-yield-agent.py'"></span>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Mode Switcher Tabs -->
+                            <div class="flex items-center p-1 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-medium">
+                                <button @click="activeTab = 'developer'" 
+                                        :class="activeTab === 'developer' ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/30' : 'text-zinc-400 hover:text-zinc-200'"
+                                        class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>Developer Tool / AI SDK</span>
+                                </button>
+                                <button @click="activeTab = 'hospitality'" 
+                                        :class="activeTab === 'hospitality' ? 'bg-violet-600 text-white shadow-sm shadow-violet-500/30' : 'text-zinc-400 hover:text-zinc-200'"
+                                        class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                    <span>Hotel System AI Engine</span>
+                                </button>
+                            </div>
+
+                            <!-- Telemetry Health Badges -->
+                            <div class="hidden sm:flex items-center gap-3 text-xs">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[11px]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    Live Engine
+                                </span>
+                                <span class="text-zinc-500 font-mono text-[11px]">tok/s: 184.2</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Window Body / Interactive Code & Telemetry Canvas -->
+                        <div class="p-6 sm:p-8 bg-zinc-950/40">
+                            
+                            <!-- TAB 1: DEVELOPER TOOL / AI PRODUCT VIEW -->
+                            <div x-show="activeTab === 'developer'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                                    
+                                    <!-- Code Editor Section -->
+                                    <div class="lg:col-span-7 bg-zinc-950/90 rounded-xl border border-zinc-800/80 p-5 font-mono text-xs text-zinc-300 overflow-x-auto shadow-inner leading-relaxed">
+                                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-zinc-800/60 text-zinc-500 text-[11px]">
+                                            <span class="text-zinc-400">typescript // quickstart.ts</span>
+                                            <span class="text-indigo-400">nexus v2.4.0</span>
+                                        </div>
+                                        <pre class="text-zinc-300"><code><span class="text-purple-400">import</span> { <span class="text-indigo-300">createNexusMesh</span>, <span class="text-indigo-300">AgentOrchestrator</span> } <span class="text-purple-400">from</span> <span class="text-emerald-300">'@nexus/ai-engine'</span>;
+
+<span class="text-zinc-500">// 1. Initialize ultra-low latency neural runtime</span>
+<span class="text-purple-400">const</span> mesh = <span class="text-blue-400">await</span> <span class="text-indigo-300">createNexusMesh</span>({
+  apiKey: process.env.<span class="text-amber-300">NEXUS_KEY</span>,
+  edgeRegion: <span class="text-emerald-300">'auto-optimal'</span>,
+  streaming: <span class="text-amber-400">true</span>,
+});
+
+<span class="text-zinc-500">// 2. Spin up autonomous multi-agent cluster</span>
+<span class="text-purple-400">const</span> cluster = mesh.<span class="text-blue-400">spawnCluster</span>({
+  model: <span class="text-emerald-300">'neural-flash-high-v2'</span>,
+  consensus: <span class="text-emerald-300">'raft-distributed'</span>,
+  maxConcurrency: <span class="text-amber-400">2048</span>,
+});
+
+<span class="text-zinc-500">// 3. Stream pipeline events with microsecond precision</span>
+mesh.<span class="text-blue-400">onStream</span>((event) => {
+  console.<span class="text-blue-400">log</span>(<span class="text-emerald-300">`[Mesh Event] ${event.type}: ${event.latencyMs}ms`</span>);
+});</code></pre>
+                                    </div>
+
+                                    <!-- Live Telemetry / Neural Stream Output -->
+                                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                                        
+                                        <!-- Metric Cards -->
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div class="p-4 rounded-xl bg-zinc-900/50 border border-white/5 backdrop-blur-md">
+                                                <div class="text-[11px] text-zinc-400 uppercase tracking-wider mb-1">Time to First Token</div>
+                                                <div class="text-2xl font-bold text-white tracking-tight flex items-baseline gap-1.5">
+                                                    <span>8.4</span>
+                                                    <span class="text-xs font-normal text-emerald-400">ms</span>
+                                                </div>
+                                                <div class="text-[11px] text-zinc-500 mt-1">99.8th percentile</div>
+                                            </div>
+
+                                            <div class="p-4 rounded-xl bg-zinc-900/50 border border-white/5 backdrop-blur-md">
+                                                <div class="text-[11px] text-zinc-400 uppercase tracking-wider mb-1">Throughput</div>
+                                                <div class="text-2xl font-bold text-white tracking-tight flex items-baseline gap-1.5">
+                                                    <span>184.2</span>
+                                                    <span class="text-xs font-normal text-indigo-400">k req/s</span>
+                                                </div>
+                                                <div class="text-[11px] text-zinc-500 mt-1">across 32 edge clusters</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Live Stream Event Terminal -->
+                                        <div class="flex-1 p-4 rounded-xl bg-zinc-950/80 border border-zinc-800/80 font-mono text-[11px] space-y-2">
+                                            <div class="flex items-center justify-between text-zinc-500 pb-2 border-b border-zinc-800/50">
+                                                <span>LIVE TELEMETRY STREAM</span>
+                                                <span class="flex items-center gap-1 text-emerald-400 text-[10px]">
+                                                    <span class="w-1 h-1 rounded-full bg-emerald-400 animate-ping"></span>
+                                                    SYNCED
+                                                </span>
+                                            </div>
+                                            <div class="text-zinc-400 flex items-center justify-between">
+                                                <span>[17:34:02.102] Agent #1842 spawned</span>
+                                                <span class="text-indigo-400">us-east</span>
+                                            </div>
+                                            <div class="text-zinc-400 flex items-center justify-between">
+                                                <span>[17:34:02.115] Raft Consensus verified</span>
+                                                <span class="text-emerald-400">0.8ms</span>
+                                            </div>
+                                            <div class="text-zinc-400 flex items-center justify-between">
+                                                <span>[17:34:02.148] Neural Pipeline warm</span>
+                                                <span class="text-violet-400">0 cold starts</span>
+                                            </div>
+                                            <div class="text-zinc-400 flex items-center justify-between">
+                                                <span>[17:34:02.190] Vector Embeddings indexed</span>
+                                                <span class="text-zinc-300">512k/512k</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- TAB 2: HOTEL SYSTEM AI ENGINE VIEW -->
+                            <div x-show="activeTab === 'hospitality'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                                    
+                                    <!-- Live Hotel Automation Board -->
+                                    <div class="lg:col-span-7 bg-zinc-950/90 rounded-xl border border-zinc-800/80 p-5 font-mono text-xs text-zinc-300 space-y-4">
+                                        <div class="flex items-center justify-between pb-3 border-b border-zinc-800/60">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-amber-400">🏨 Hotel Intelligence Node:</span>
+                                                <span class="text-zinc-200 font-semibold">Serenity Villa Siem Reap</span>
+                                            </div>
+                                            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 text-[10px]">AI COPILOT</span>
+                                        </div>
+
+                                        <div class="space-y-3 font-sans">
+                                            <div class="p-3 rounded-lg bg-zinc-900/70 border border-zinc-800 flex items-center justify-between">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs">R104</div>
+                                                    <div>
+                                                        <div class="text-zinc-200 font-semibold text-xs">Deluxe Pool Villa #104</div>
+                                                        <div class="text-zinc-400 text-[11px]">Guest: Jean Dupont (Check-in 14:00)</div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Auto Room Ready</span>
+                                                    <div class="text-[10px] text-zinc-500 mt-0.5">AC pre-cooled to 23°C</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="p-3 rounded-lg bg-zinc-900/70 border border-zinc-800 flex items-center justify-between">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-8 h-8 rounded-lg bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-xs">KHQR</div>
+                                                    <div>
+                                                        <div class="text-zinc-200 font-semibold text-xs">Instant Settlement Engine</div>
+                                                        <div class="text-zinc-400 text-[11px]">Bakong QR verification webhook</div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Auto Reconciled</span>
+                                                    <div class="text-[10px] text-zinc-500 mt-0.5">Tx: KHQR-7E9381 • $140.00</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="p-3 rounded-lg bg-zinc-900/70 border border-zinc-800 flex items-center justify-between">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs">YIELD</div>
+                                                    <div>
+                                                        <div class="text-zinc-200 font-semibold text-xs">Predictive Yield Optimization</div>
+                                                        <div class="text-zinc-400 text-[11px]">Angkor Wat high-season demand spike detected</div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">+18% RevPAR</span>
+                                                    <div class="text-[10px] text-zinc-500 mt-0.5">Auto-adjusted 12 room prices</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Realtime Hotel Analytics -->
+                                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4 font-mono text-xs">
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div class="p-4 rounded-xl bg-zinc-900/50 border border-white/5">
+                                                <div class="text-[11px] text-zinc-400 uppercase">Live Occupancy</div>
+                                                <div class="text-2xl font-bold text-emerald-400 font-sans tracking-tight">94.8%</div>
+                                                <div class="text-[11px] text-zinc-500 mt-1">28/30 suites occupied</div>
+                                            </div>
+                                            <div class="p-4 rounded-xl bg-zinc-900/50 border border-white/5">
+                                                <div class="text-[11px] text-zinc-400 uppercase">Guest Satisfaction</div>
+                                                <div class="text-2xl font-bold text-amber-400 font-sans tracking-tight">4.96 <span class="text-xs text-zinc-400 font-normal">/5</span></div>
+                                                <div class="text-[11px] text-zinc-500 mt-1">Autonomous concierge</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800/80 text-[11px] space-y-2">
+                                            <div class="flex items-center justify-between text-zinc-400 border-b border-zinc-800/50 pb-2">
+                                                <span>AUTONOMOUS DISPATCH LOG</span>
+                                                <span class="text-violet-400 font-sans font-bold">24/7 ACTIVE</span>
+                                            </div>
+                                            <div class="text-zinc-400">→ Guest asked: "Airport tuk-tuk pickup at 08:30"</div>
+                                            <div class="text-emerald-400">✓ AI dispatched Driver Sokha (Plate: 2A-9812)</div>
+                                            <div class="text-zinc-400">→ Automated WhatsApp confirmation sent to guest</div>
+                                            <div class="text-indigo-300">✓ Folio updated: +$15.00 Transportation service</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Subtle Bottom Sheen Inside Card -->
+                        <div class="h-1 w-full bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Secondary Features Section (Scroll Unfolding Target) -->
+        <section id="features" class="relative py-28 bg-[#09090b] border-t border-white/5 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 mb-4">
+                        <span>ARCHITECTURE SPECS</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-5">
+                        Engineered for High Throughput & Zero Cold Starts
+                    </h2>
+                    <p class="text-zinc-400 text-base sm:text-lg">
+                        Everything you need to orchestrate autonomous AI workloads, real-time event streams, and edge data synchronization in production.
+                    </p>
+                </div>
+
+                <!-- Feature Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-indigo-500/40 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Microsecond Edge Routing</h3>
+                            <p class="text-sm text-zinc-400 leading-relaxed">
+                                Distributed Raft consensus and state hydration across 32 worldwide edge nodes, cutting P99 latency below 10 milliseconds.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center text-xs text-indigo-400 font-mono">
+                            <span>p99 &lt; 9.8ms guaranteed</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-violet-500/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-6 group-hover:scale-110 group-hover:bg-violet-600/20 transition-all">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Enterprise Zero-Trust Security</h3>
+                            <p class="text-sm text-zinc-400 leading-relaxed">
+                                Cryptographic attestation, automated mTLS key rotation, and isolated memory micro-enclaves for mission-critical enterprise workloads.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center text-xs text-violet-400 font-mono">
+                            <span>SOC2 Type II & HIPAA certified</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-fuchsia-500/40 hover:shadow-[0_0_30px_rgba(217,70,239,0.15)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-fuchsia-600/10 border border-fuchsia-500/20 flex items-center justify-center text-fuchsia-400 mb-6 group-hover:scale-110 group-hover:bg-fuchsia-600/20 transition-all">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Autonomous Multi-Agent Mesh</h3>
+                            <p class="text-sm text-zinc-400 leading-relaxed">
+                                Self-coordinating agents handle reservation booking pipelines, dynamic pricing yield calculations, and instant guest concierge inquiries in real-time.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center text-xs text-fuchsia-400 font-mono">
+                            <span>24,000 concurrent agents / node</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#070709] py-12 text-zinc-500 text-xs font-mono">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-bold text-[10px]">N</div>
+                <span class="text-zinc-400">© 2026 NexusAI Technologies. All systems operational.</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="hover:text-zinc-300 transition">Privacy</a>
+                <a href="#" class="hover:text-zinc-300 transition">Terms</a>
+                <a href="/" class="text-amber-400 hover:text-amber-300 transition">Hotel Portal</a>
+                <a href="https://motion.dev" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">Powered by motion.dev</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Motion.dev Universal ES Module Import & Animation Controller -->
+    <script type="module">
+        import { animate, scroll } from 'https://cdn.jsdelivr.net/npm/motion@12.4.7/+esm';
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // 1. Initial Staggered Entrance Animations
+        if (!prefersReducedMotion) {
+            animate(
+                '#hero-badge',
+                { opacity: [0, 1], y: [-15, 0], scale: [0.96, 1] },
+                { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+            );
+
+            animate(
+                '#hero-headline',
+                { opacity: [0, 1], y: [24, 0] },
+                { duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }
+            );
+
+            animate(
+                '#hero-subheadline',
+                { opacity: [0, 1], y: [20, 0] },
+                { duration: 0.8, delay: 0.28, ease: [0.16, 1, 0.3, 1] }
+            );
+
+            animate(
+                '#hero-ctas',
+                { opacity: [0, 1], y: [16, 0] },
+                { duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }
+            );
+
+            animate(
+                '#hero-mockup-card',
+                { opacity: [0, 1], y: [50, 0] },
+                { duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }
+            );
+
+            animate(
+                '.floating-badge',
+                { opacity: [0, 1], scale: [0.8, 1] },
+                { duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }
+            );
+        } else {
+            const elements = ['#hero-badge', '#hero-headline', '#hero-subheadline', '#hero-ctas', '#hero-mockup-card', '.floating-badge'];
+            elements.forEach((selector) => {
+                const el = document.querySelector(selector);
+                if (el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                }
+            });
+        }
+
+        // 2. Scroll-driven Progress Indicator
+        const progressBar = document.querySelector('#scroll-progress-bar');
+        if (progressBar) {
+            scroll((progress) => {
+                progressBar.style.transform = `scaleX(${progress})`;
+            });
+        }
+
+        // 3. Scroll-driven 3D Perspective Tilt on the Mockup Card
+        const mockupCard = document.querySelector('#hero-mockup-card');
+        const heroSection = document.querySelector('#hero-section');
+        if (mockupCard && heroSection && !prefersReducedMotion) {
+            scroll(
+                (progress) => {
+                    const normalized = Math.min(1, Math.max(0, progress * 2.2));
+                    const rotateX = 18 * (1 - normalized);
+                    const scale = 0.93 + (0.07 * normalized);
+                    const translateY = -25 * normalized;
+                    mockupCard.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) scale(${scale.toFixed(3)}) translateY(${translateY.toFixed(1)}px)`;
+                },
+                {
+                    target: heroSection,
+                    offset: ['start start', 'end start']
+                }
+            );
+        }
+
+        // 4. Scroll-driven Ambient Glow Dynamic Shift
+        const ambientGlow = document.querySelector('#ambient-glow-mesh');
+        if (ambientGlow && heroSection && !prefersReducedMotion) {
+            scroll(
+                (progress) => {
+                    const opacity = Math.max(0.15, 0.65 - (progress * 0.5));
+                    const scale = 1 + (progress * 0.25);
+                    ambientGlow.style.opacity = `${opacity.toFixed(2)}`;
+                    ambientGlow.style.transform = `translate(-50%, -50%) scale(${scale.toFixed(2)})`;
+                },
+                {
+                    target: heroSection,
+                    offset: ['start start', 'end start']
+                }
+            );
+        }
+
+        // 5. Parallax Floating Elements
+        const floaters = document.querySelectorAll('[data-parallax-depth]');
+        if (floaters.length > 0 && heroSection && !prefersReducedMotion) {
+            scroll(
+                (progress) => {
+                    floaters.forEach((floater) => {
+                        const depth = parseFloat(floater.getAttribute('data-parallax-depth') || '20');
+                        const offset = progress * depth * 3.5;
+                        floater.style.transform = `translateY(${-offset.toFixed(1)}px)`;
+                    });
+                },
+                {
+                    target: heroSection,
+                    offset: ['start start', 'end start']
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>

@@ -9,34 +9,32 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Public Guest Routes
-|--------------------------------------------------------------------------
-*/
+
+// Public Guest Routes
+
 Route::get('/', [BookingController::class, 'index'])->name('home');
+Route::view('/hero', 'hero')->name('hero.showcase');
 Route::get('/rooms', [BookingController::class, 'rooms'])->name('rooms.index');
 Route::get('/rooms/{roomType:slug}', [BookingController::class, 'showRoomType'])->name('rooms.show');
+Route::get('/amenities', [BookingController::class, 'amenities'])->name('amenities');
+Route::get('/experience', [BookingController::class, 'experience'])->name('experience');
 Route::get('/book/{room?}', [BookingController::class, 'book'])->name('booking.create');
 Route::post('/book', [BookingController::class, 'store'])->name('booking.store');
 Route::post('/book/calculate', [BookingController::class, 'calculate'])->name('booking.calculate');
 Route::get('/booking/{code}', [BookingController::class, 'confirmation'])->name('booking.confirmation');
 Route::post('/booking/{code}/pay', [BookingController::class, 'simulatePayment'])->name('booking.simulate_payment');
 
-/*
-|--------------------------------------------------------------------------
-| Authentication Routes
-|--------------------------------------------------------------------------
-*/
+
+
+// Authentication Routes
+
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-/*
-|--------------------------------------------------------------------------
-| Admin / Staff Portal Routes
-|--------------------------------------------------------------------------
-*/
+
+// Admin / Staff Portal Routes
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'role:admin,receptionist'])

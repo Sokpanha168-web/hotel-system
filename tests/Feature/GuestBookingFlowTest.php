@@ -130,4 +130,22 @@ class GuestBookingFlowTest extends TestCase
         $this->assertTrue($reservation->is_fully_paid);
         $this->assertEquals('confirmed', $reservation->status);
     }
+
+    public function test_guest_can_view_amenities_page(): void
+    {
+        $response = $this->get(route('amenities'));
+        $response->assertStatus(200);
+        $response->assertSee('Resort Amenities & Facilities');
+        $response->assertSee('Saltwater Garden Pool');
+        $response->assertSee('Airport Transfer');
+    }
+
+    public function test_guest_can_view_experience_page(): void
+    {
+        $response = $this->get(route('experience'));
+        $response->assertStatus(200);
+        $response->assertSee('The Serenity Experience');
+        $response->assertSee('Sacred Dawn at Angkor Wat');
+        $response->assertSee('A Day in Tranquil Serenity');
+    }
 }
