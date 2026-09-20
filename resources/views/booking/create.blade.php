@@ -3,10 +3,12 @@
 @section('title', 'Complete Your Reservation - Serenity Villa')
 
 @section('content')
-<div class="bg-stone-100 py-10 border-b border-stone-200">
+<!-- Top Banner -->
+<div class="bg-[#161513] text-white py-12 border-b border-[#e2ded5]/20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-2">Guest Reservation</h1>
-        <p class="text-stone-600 text-sm">Please provide guest details and travel dates to secure your room.</p>
+        <span class="text-xs uppercase tracking-widest text-[#ebbf7d] font-bold block mb-1">Direct Reservation</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#fdfdfd] mb-2">Guest Reservation</h1>
+        <p class="text-stone-300 text-sm">Please provide guest details and travel dates to secure your room.</p>
     </div>
 </div>
 
@@ -48,15 +50,15 @@
         <!-- Left Column: Form Fields -->
         <div class="lg:col-span-7 space-y-8">
             <!-- 1. Guest Information Card -->
-            <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
-                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-stone-100">
-                    <span class="w-7 h-7 rounded-full bg-amber-700 text-white text-xs font-bold flex items-center justify-center">1</span>
-                    <h2 class="text-lg font-bold text-stone-900">Guest Information</h2>
+            <div class="bg-white rounded-2xl border border-[#e2ded5] p-6 sm:p-8 shadow-xs">
+                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-[#e2ded5]/60">
+                    <span class="w-7 h-7 rounded-full bg-[#161513] text-[#ebbf7d] text-xs font-bold flex items-center justify-center border border-[#e2ded5]/40">1</span>
+                    <h2 class="text-lg font-bold text-[#161513]">Guest Information</h2>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div class="sm:col-span-2">
-                        <label for="full_name" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="full_name" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Full Legal Name <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" 
@@ -65,11 +67,11 @@
                                value="{{ old('full_name') }}" 
                                required 
                                placeholder="e.g. Johnathan Smith"
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                     </div>
 
                     <div>
-                        <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Phone Number <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" 
@@ -78,11 +80,11 @@
                                value="{{ old('phone') }}" 
                                required 
                                placeholder="e.g. +855 12 345 678"
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                     </div>
 
                     <div>
-                        <label for="email" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="email" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Email Address (Optional)
                         </label>
                         <input type="email" 
@@ -90,11 +92,11 @@
                                name="email" 
                                value="{{ old('email') }}" 
                                placeholder="john@example.com"
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label for="national_id_or_passport" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="national_id_or_passport" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Passport / National ID Number <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" 
@@ -103,17 +105,17 @@
                                value="{{ old('national_id_or_passport') }}" 
                                required 
                                placeholder="e.g. N12345678 or ID-998877"
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                         <p class="text-[11px] text-stone-500 mt-1">Required for hospitality guest verification and local guest registry.</p>
                     </div>
                 </div>
             </div>
 
             <!-- 2. Stay Dates & Room Selection -->
-            <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
-                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-stone-100">
-                    <span class="w-7 h-7 rounded-full bg-amber-700 text-white text-xs font-bold flex items-center justify-center">2</span>
-                    <h2 class="text-lg font-bold text-stone-900">Room & Dates</h2>
+            <div class="bg-white rounded-2xl border border-[#e2ded5] p-6 sm:p-8 shadow-xs">
+                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-[#e2ded5]/60">
+                    <span class="w-7 h-7 rounded-full bg-[#161513] text-[#ebbf7d] text-xs font-bold flex items-center justify-center border border-[#e2ded5]/40">2</span>
+                    <h2 class="text-lg font-bold text-[#161513]">Room & Dates</h2>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
@@ -128,11 +130,11 @@
                                @change="calculate()"
                                min="{{ date('Y-m-d') }}"
                                required 
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm font-medium">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm font-medium focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                     </div>
 
                     <div>
-                        <label for="check_out_date" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="check_out_date" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Check-out Date <span class="text-rose-500">*</span>
                         </label>
                         <input type="date" 
@@ -142,11 +144,11 @@
                                @change="calculate()"
                                min="{{ date('Y-m-d', strtotime('+1 day')) }}"
                                required 
-                               class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm font-medium">
+                               class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm font-medium focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label for="room_type_id" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label for="room_type_id" class="block text-xs font-bold uppercase tracking-wider text-[#39393b] mb-1.5">
                             Room Category <span class="text-rose-500">*</span>
                         </label>
                         <select id="room_type_id" 
@@ -154,7 +156,7 @@
                                 x-model="selectedRoomTypeId"
                                 @change="calculate()"
                                 required 
-                                class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm font-medium">
+                                class="w-full px-4 py-2.5 rounded-xl border border-[#e2ded5] text-sm font-medium focus:ring-2 focus:ring-[#ebbf7d] focus:border-[#ebbf7d]">
                             @foreach($allRoomTypes as $rt)
                                 <option value="{{ $rt->id }}" {{ ($selectedRoomType->id ?? 0) == $rt->id ? 'selected' : '' }}>
                                     {{ $rt->name }} (${{ number_format($rt->base_price, 2) }}/night, max {{ $rt->capacity }} guests)
@@ -183,37 +185,37 @@
             </div>
 
             <!-- 3. Add-on Services Selection -->
-            <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
-                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-stone-100">
-                    <span class="w-7 h-7 rounded-full bg-amber-700 text-white text-xs font-bold flex items-center justify-center">3</span>
-                    <h2 class="text-lg font-bold text-stone-900">Enhance Your Stay (Optional)</h2>
+            <div class="bg-white rounded-2xl border border-[#e2ded5] p-6 sm:p-8 shadow-xs">
+                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-[#e2ded5]/60">
+                    <span class="w-7 h-7 rounded-full bg-[#161513] text-[#ebbf7d] text-xs font-bold flex items-center justify-center border border-[#e2ded5]/40">3</span>
+                    <h2 class="text-lg font-bold text-[#161513]">Enhance Your Stay (Optional)</h2>
                 </div>
 
                 <div class="space-y-4">
                     @foreach($services as $index => $service)
-                        <div class="flex items-center justify-between p-3.5 rounded-xl border border-stone-200 hover:border-amber-300 transition bg-stone-50/50">
+                        <div class="flex items-center justify-between p-3.5 rounded-xl border border-[#e2ded5] hover:border-[#ebbf7d] transition bg-[#f7f4ec]/40">
                             <div class="flex items-center space-x-3">
                                 <input type="checkbox" 
                                        id="service_{{ $service->id }}" 
                                        name="services[{{ $index }}][id]" 
                                        value="{{ $service->id }}"
                                        @change="toggleService({{ $service->id }}, $event.target.checked); calculate()"
-                                       class="w-4 h-4 text-amber-600 rounded border-stone-300 focus:ring-amber-500">
+                                       class="w-4 h-4 text-[#161513] rounded border-[#e2ded5] focus:ring-[#ebbf7d]">
                                 <label for="service_{{ $service->id }}" class="cursor-pointer">
-                                    <span class="block text-sm font-semibold text-stone-900">{{ $service->name }}</span>
-                                    <span class="text-xs text-stone-500">${{ number_format($service->price, 2) }} / {{ str_replace('_', ' ', $service->unit) }}</span>
+                                    <span class="block text-sm font-semibold text-[#161513]">{{ $service->name }}</span>
+                                    <span class="text-xs text-[#39393b]">${{ number_format($service->price, 2) }} / {{ str_replace('_', ' ', $service->unit) }}</span>
                                 </label>
                             </div>
 
                             <div class="flex items-center space-x-2" x-show="selectedServices.includes({{ $service->id }})">
-                                <label class="text-xs text-stone-500 font-medium">Qty:</label>
+                                <label class="text-xs text-[#39393b] font-medium">Qty:</label>
                                 <input type="number" 
                                        name="services[{{ $index }}][quantity]" 
                                        value="1" 
                                        min="1" 
                                        max="20"
                                        @input="updateServiceQty({{ $service->id }}, $event.target.value); calculate()"
-                                       class="w-16 px-2.5 py-1 text-center border border-stone-300 rounded-lg text-sm font-medium">
+                                       class="w-16 px-2.5 py-1 text-center border border-[#e2ded5] rounded-lg text-sm font-medium">
                             </div>
                         </div>
                     @endforeach
@@ -221,29 +223,29 @@
             </div>
 
             <!-- 4. Payment Method -->
-            <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
-                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-stone-100">
-                    <span class="w-7 h-7 rounded-full bg-amber-700 text-white text-xs font-bold flex items-center justify-center">4</span>
-                    <h2 class="text-lg font-bold text-stone-900">Payment Preference</h2>
+            <div class="bg-white rounded-2xl border border-[#e2ded5] p-6 sm:p-8 shadow-xs">
+                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-[#e2ded5]/60">
+                    <span class="w-7 h-7 rounded-full bg-[#161513] text-[#ebbf7d] text-xs font-bold flex items-center justify-center border border-[#e2ded5]/40">4</span>
+                    <h2 class="text-lg font-bold text-[#161513]">Payment Preference</h2>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <label class="relative flex flex-col p-4 rounded-xl border border-stone-200 cursor-pointer hover:border-amber-500 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/40">
-                        <input type="radio" name="payment_method" value="khqr_transfer" checked class="text-amber-600 focus:ring-amber-500">
-                        <span class="text-sm font-bold text-stone-900 mt-2 block">Bakong KHQR</span>
-                        <span class="text-[11px] text-stone-500">Scan & Pay via Mobile Banking</span>
+                    <label class="relative flex flex-col p-4 rounded-xl border border-[#e2ded5] cursor-pointer hover:border-[#ebbf7d] transition has-[:checked]:border-[#ebbf7d] has-[:checked]:bg-[#f7f4ec]">
+                        <input type="radio" name="payment_method" value="khqr_transfer" checked class="text-[#161513] focus:ring-[#ebbf7d]">
+                        <span class="text-sm font-bold text-[#161513] mt-2 block">Bakong KHQR</span>
+                        <span class="text-[11px] text-[#39393b]">Scan & Pay via Mobile Banking</span>
                     </label>
 
-                    <label class="relative flex flex-col p-4 rounded-xl border border-stone-200 cursor-pointer hover:border-amber-500 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/40">
-                        <input type="radio" name="payment_method" value="cash" class="text-amber-600 focus:ring-amber-500">
-                        <span class="text-sm font-bold text-stone-900 mt-2 block">Pay at Check-in</span>
-                        <span class="text-[11px] text-stone-500">Cash (USD or KHR) upon arrival</span>
+                    <label class="relative flex flex-col p-4 rounded-xl border border-[#e2ded5] cursor-pointer hover:border-[#ebbf7d] transition has-[:checked]:border-[#ebbf7d] has-[:checked]:bg-[#f7f4ec]">
+                        <input type="radio" name="payment_method" value="cash" class="text-[#161513] focus:ring-[#ebbf7d]">
+                        <span class="text-sm font-bold text-[#161513] mt-2 block">Pay at Check-in</span>
+                        <span class="text-[11px] text-[#39393b]">Cash (USD or KHR) upon arrival</span>
                     </label>
 
-                    <label class="relative flex flex-col p-4 rounded-xl border border-stone-200 cursor-pointer hover:border-amber-500 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/40">
-                        <input type="radio" name="payment_method" value="card" class="text-amber-600 focus:ring-amber-500">
-                        <span class="text-sm font-bold text-stone-900 mt-2 block">Credit / Debit Card</span>
-                        <span class="text-[11px] text-stone-500">Visa / Mastercard at desk</span>
+                    <label class="relative flex flex-col p-4 rounded-xl border border-[#e2ded5] cursor-pointer hover:border-[#ebbf7d] transition has-[:checked]:border-[#ebbf7d] has-[:checked]:bg-[#f7f4ec]">
+                        <input type="radio" name="payment_method" value="card" class="text-[#161513] focus:ring-[#ebbf7d]">
+                        <span class="text-sm font-bold text-[#161513] mt-2 block">Credit / Debit Card</span>
+                        <span class="text-[11px] text-[#39393b]">Visa / Mastercard at desk</span>
                     </label>
                 </div>
             </div>
@@ -251,50 +253,50 @@
 
         <!-- Right Column: Live Summary Card -->
         <div class="lg:col-span-5">
-            <div class="sticky top-28 bg-white rounded-2xl border border-stone-200 shadow-lg p-6 sm:p-8 space-y-6">
-                <div class="border-b border-stone-100 pb-4">
-                    <h3 class="font-serif text-xl font-bold text-stone-900">Reservation Summary</h3>
-                    <p class="text-xs text-stone-500 mt-1">Live calculation of your planned stay</p>
+            <div class="sticky top-28 bg-white rounded-2xl border border-[#e2ded5] shadow-lg p-6 sm:p-8 space-y-6">
+                <div class="border-b border-[#e2ded5]/60 pb-4">
+                    <h3 class="font-serif text-xl font-bold text-[#161513]">Reservation Summary</h3>
+                    <p class="text-xs text-[#39393b] mt-1">Live calculation of your planned stay</p>
                 </div>
 
                 <div class="space-y-3.5 text-sm">
-                    <div class="flex justify-between items-center text-stone-600">
+                    <div class="flex justify-between items-center text-[#39393b]">
                         <span>Duration</span>
-                        <span class="font-semibold text-stone-900" x-text="nights + ' ' + (nights === 1 ? 'Night' : 'Nights')"></span>
+                        <span class="font-semibold text-[#161513]" x-text="nights + ' ' + (nights === 1 ? 'Night' : 'Nights')"></span>
                     </div>
 
-                    <div class="flex justify-between items-center text-stone-600">
+                    <div class="flex justify-between items-center text-[#39393b]">
                         <span>Room Rate</span>
-                        <span class="font-semibold text-stone-900" x-text="'$' + basePrice.toFixed(2) + ' / night'"></span>
+                        <span class="font-semibold text-[#161513]" x-text="'$' + basePrice.toFixed(2) + ' / night'"></span>
                     </div>
 
-                    <div class="flex justify-between items-center text-stone-600">
+                    <div class="flex justify-between items-center text-[#39393b]">
                         <span>Room Subtotal</span>
-                        <span class="font-semibold text-stone-900" x-text="'$' + roomTotal.toFixed(2)"></span>
+                        <span class="font-semibold text-[#161513]" x-text="'$' + roomTotal.toFixed(2)"></span>
                     </div>
 
-                    <div class="flex justify-between items-center text-stone-600" x-show="servicesTotal > 0">
+                    <div class="flex justify-between items-center text-[#39393b]" x-show="servicesTotal > 0">
                         <span>Add-on Services</span>
-                        <span class="font-semibold text-stone-900" x-text="'$' + servicesTotal.toFixed(2)"></span>
+                        <span class="font-semibold text-[#161513]" x-text="'$' + servicesTotal.toFixed(2)"></span>
                     </div>
 
-                    <div class="pt-4 border-t border-stone-200 flex justify-between items-baseline">
+                    <div class="pt-4 border-t border-[#e2ded5] flex justify-between items-baseline">
                         <div>
-                            <span class="text-base font-bold text-stone-900 block">Total Amount</span>
+                            <span class="text-base font-bold text-[#161513] block">Total Amount</span>
                             <span class="text-[11px] text-stone-500">Taxes & service charge included</span>
                         </div>
-                        <span class="text-3xl font-serif font-bold text-amber-800" x-text="'$' + grandTotal.toFixed(2)"></span>
+                        <span class="text-3xl font-serif font-bold text-[#161513]" x-text="'$' + grandTotal.toFixed(2)"></span>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" 
                         :disabled="availableCount === 0"
-                        class="w-full py-4 px-6 rounded-xl font-bold text-sm text-white bg-amber-700 hover:bg-amber-800 shadow-md shadow-amber-900/15 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="w-full py-4 px-6 rounded-xl font-bold text-sm text-[#161513] bg-[#ebbf7d] hover:bg-[#deaf6b] shadow-sm hover:shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
                     Confirm & Place Reservation &rarr;
                 </button>
 
-                <p class="text-center text-[11px] text-stone-500 leading-relaxed">
+                <p class="text-center text-[11px] text-[#39393b]/70 leading-relaxed">
                     By clicking Confirm, you agree to Serenity Villa Guest House's terms, check-in policies, and privacy guidelines.
                 </p>
             </div>

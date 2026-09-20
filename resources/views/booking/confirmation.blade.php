@@ -11,20 +11,20 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
             </svg>
         </div>
-        <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-1">Reservation Received</span>
-        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-2">Thank you, {{ $reservation->guest->full_name }}!</h1>
-        <p class="text-stone-600 text-sm">
+        <span class="text-xs uppercase tracking-widest text-[#8c6d3b] font-bold block mb-1">Reservation Received</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#161513] mb-2">Thank you, {{ $reservation->guest->full_name }}!</h1>
+        <p class="text-[#39393b] text-sm">
             Your booking reference code is 
-            <span class="font-mono font-bold text-amber-800 bg-amber-50 px-2 py-1 rounded border border-amber-200">
+            <span class="font-mono font-bold text-[#161513] bg-[#f7f4ec] px-2.5 py-1 rounded-lg border border-[#e2ded5]">
                 {{ $reservation->booking_code }}
             </span>
         </p>
     </div>
 
     <!-- Main Card -->
-    <div class="bg-white rounded-3xl border border-stone-200 shadow-xl overflow-hidden mb-10">
+    <div class="bg-white rounded-3xl border border-[#e2ded5] shadow-xl overflow-hidden mb-10">
         <!-- Top Status Bar -->
-        <div class="bg-stone-900 text-white px-8 py-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="bg-[#161513] text-white px-8 py-5 flex flex-wrap items-center justify-between gap-4">
             <div>
                 <span class="text-xs uppercase tracking-wider text-stone-400 block font-bold">Booking Status</span>
                 <div class="flex items-center space-x-2 mt-0.5">
@@ -35,20 +35,20 @@
                     @elseif($reservation->status === 'checked_out')
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-500 text-white">Checked Out</span>
                     @else
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500 text-white">Pending</span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#ebbf7d] text-[#161513]">Pending</span>
                     @endif
 
                     @if($reservation->is_fully_paid)
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-600 text-white">Fully Paid</span>
                     @else
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-600 text-white">Balance Due: ${{ number_format($reservation->balance_due, 2) }}</span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#ebbf7d] text-[#161513]">Balance Due: ${{ number_format($reservation->balance_due, 2) }}</span>
                     @endif
                 </div>
             </div>
 
             <div class="text-right">
                 <span class="text-xs uppercase tracking-wider text-stone-400 block font-bold">Total Stay Cost</span>
-                <span class="text-2xl font-serif font-bold text-amber-400">${{ number_format($reservation->total_amount, 2) }}</span>
+                <span class="text-2xl font-serif font-bold text-[#ebbf7d]">${{ number_format($reservation->total_amount, 2) }}</span>
             </div>
         </div>
 
@@ -152,8 +152,8 @@
                                 <td class="py-2 px-4 text-right font-semibold text-emerald-700">${{ number_format($reservation->total_paid, 2) }}</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="py-2 px-4 text-right font-bold text-stone-900">Balance Due:</td>
-                                <td class="py-2 px-4 text-right font-bold text-amber-800">${{ number_format($reservation->balance_due, 2) }}</td>
+                                <td colspan="3" class="py-2 px-4 text-right font-bold text-[#161513]">Balance Due:</td>
+                                <td class="py-2 px-4 text-right font-bold text-[#161513]">${{ number_format($reservation->balance_due, 2) }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -162,79 +162,79 @@
 
             <!-- Payment Action / KHQR Section -->
             @if(!$reservation->is_fully_paid)
-                <div class="pt-6 border-t border-stone-200">
-                    <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8">
+                <div class="pt-6 border-t border-[#e2ded5]">
+                    <div class="bg-[#f7f4ec]/40 border border-[#e2ded5] rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8">
                         <!-- Visual KHQR Card Placeholder -->
-                        <div class="w-64 bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden flex-shrink-0">
+                        <div class="w-64 bg-white rounded-2xl shadow-md border border-[#e2ded5] overflow-hidden flex-shrink-0">
                             <!-- KHQR Header Banner -->
-                            <div class="bg-red-600 text-white p-3 text-center">
+                            <div class="bg-[#161513] text-[#ebbf7d] p-3 text-center border-b border-[#e2ded5]/20">
                                 <span class="font-bold tracking-widest text-sm uppercase block font-sans">KHQR</span>
-                                <span class="text-[9px] uppercase tracking-wider text-red-100">National QR Payment</span>
+                                <span class="text-[9px] uppercase tracking-wider text-stone-300">National QR Payment</span>
                             </div>
 
                             <div class="p-4 text-center">
-                                <div class="text-[11px] font-bold text-stone-800 uppercase tracking-tight">SERENITY VILLA GUEST HOUSE</div>
-                                <div class="text-[10px] text-stone-500 mb-3">Merchant ID: 00098877</div>
+                                <div class="text-[11px] font-bold text-[#161513] uppercase tracking-tight">SERENITY VILLA GUEST HOUSE</div>
+                                <div class="text-[10px] text-[#39393b] mb-3">Merchant ID: 00098877</div>
 
                                 <!-- Simulated QR Code Graphic -->
-                                <div class="w-44 h-44 mx-auto p-2 bg-white border border-stone-300 rounded-xl shadow-inner flex items-center justify-center relative">
+                                <div class="w-44 h-44 mx-auto p-2 bg-white border border-[#e2ded5] rounded-xl shadow-inner flex items-center justify-center relative">
                                     <svg class="w-40 h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <!-- QR Corner Squares -->
-                                        <rect x="5" y="5" width="26" height="26" rx="3" fill="#1c1917" />
+                                        <rect x="5" y="5" width="26" height="26" rx="3" fill="#161513" />
                                         <rect x="9" y="9" width="18" height="18" rx="2" fill="white" />
-                                        <rect x="13" y="13" width="10" height="10" rx="1" fill="#1c1917" />
+                                        <rect x="13" y="13" width="10" height="10" rx="1" fill="#161513" />
 
-                                        <rect x="69" y="5" width="26" height="26" rx="3" fill="#1c1917" />
+                                        <rect x="69" y="5" width="26" height="26" rx="3" fill="#161513" />
                                         <rect x="73" y="9" width="18" height="18" rx="2" fill="white" />
-                                        <rect x="77" y="13" width="10" height="10" rx="1" fill="#1c1917" />
+                                        <rect x="77" y="13" width="10" height="10" rx="1" fill="#161513" />
 
-                                        <rect x="5" y="69" width="26" height="26" rx="3" fill="#1c1917" />
+                                        <rect x="5" y="69" width="26" height="26" rx="3" fill="#161513" />
                                         <rect x="9" y="73" width="18" height="18" rx="2" fill="white" />
-                                        <rect x="13" y="77" width="10" height="10" rx="1" fill="#1c1917" />
+                                        <rect x="13" y="77" width="10" height="10" rx="1" fill="#161513" />
 
                                         <!-- Patterns -->
-                                        <rect x="36" y="8" width="8" height="8" fill="#1c1917" />
-                                        <rect x="48" y="8" width="8" height="8" fill="#1c1917" />
-                                        <rect x="36" y="20" width="8" height="8" fill="#1c1917" />
-                                        <rect x="48" y="20" width="8" height="8" fill="#1c1917" />
+                                        <rect x="36" y="8" width="8" height="8" fill="#161513" />
+                                        <rect x="48" y="8" width="8" height="8" fill="#161513" />
+                                        <rect x="36" y="20" width="8" height="8" fill="#161513" />
+                                        <rect x="48" y="20" width="8" height="8" fill="#161513" />
 
-                                        <rect x="8" y="36" width="8" height="8" fill="#1c1917" />
-                                        <rect x="20" y="36" width="8" height="8" fill="#1c1917" />
-                                        <rect x="36" y="36" width="12" height="12" rx="2" fill="#d97706" />
-                                        <rect x="52" y="36" width="8" height="8" fill="#1c1917" />
-                                        <rect x="68" y="36" width="8" height="8" fill="#1c1917" />
-                                        <rect x="84" y="36" width="8" height="8" fill="#1c1917" />
+                                        <rect x="8" y="36" width="8" height="8" fill="#161513" />
+                                        <rect x="20" y="36" width="8" height="8" fill="#161513" />
+                                        <rect x="36" y="36" width="12" height="12" rx="2" fill="#ebbf7d" />
+                                        <rect x="52" y="36" width="8" height="8" fill="#161513" />
+                                        <rect x="68" y="36" width="8" height="8" fill="#161513" />
+                                        <rect x="84" y="36" width="8" height="8" fill="#161513" />
 
-                                        <rect x="36" y="52" width="8" height="8" fill="#1c1917" />
-                                        <rect x="48" y="52" width="12" height="12" rx="2" fill="#d97706" />
-                                        <rect x="68" y="52" width="8" height="8" fill="#1c1917" />
+                                        <rect x="36" y="52" width="8" height="8" fill="#161513" />
+                                        <rect x="48" y="52" width="12" height="12" rx="2" fill="#ebbf7d" />
+                                        <rect x="68" y="52" width="8" height="8" fill="#161513" />
 
-                                        <rect x="8" y="48" width="8" height="8" fill="#1c1917" />
-                                        <rect x="20" y="48" width="8" height="8" fill="#1c1917" />
-                                        <rect x="36" y="68" width="8" height="8" fill="#1c1917" />
-                                        <rect x="48" y="68" width="8" height="8" fill="#1c1917" />
-                                        <rect x="68" y="68" width="8" height="8" fill="#1c1917" />
-                                        <rect x="80" y="68" width="8" height="8" fill="#1c1917" />
-                                        <rect x="68" y="80" width="8" height="8" fill="#1c1917" />
-                                        <rect x="84" y="80" width="8" height="8" fill="#1c1917" />
+                                        <rect x="8" y="48" width="8" height="8" fill="#161513" />
+                                        <rect x="20" y="48" width="8" height="8" fill="#161513" />
+                                        <rect x="36" y="68" width="8" height="8" fill="#161513" />
+                                        <rect x="48" y="68" width="8" height="8" fill="#161513" />
+                                        <rect x="68" y="68" width="8" height="8" fill="#161513" />
+                                        <rect x="80" y="68" width="8" height="8" fill="#161513" />
+                                        <rect x="68" y="80" width="8" height="8" fill="#161513" />
+                                        <rect x="84" y="80" width="8" height="8" fill="#161513" />
                                     </svg>
                                 </div>
 
                                 <div class="mt-3">
-                                    <div class="text-lg font-bold font-mono text-stone-900">${{ number_format($reservation->balance_due, 2) }}</div>
-                                    <div class="text-[11px] text-stone-500 font-mono">≈ {{ number_format($reservation->balance_due * 4100) }} KHR</div>
+                                    <div class="text-lg font-bold font-mono text-[#161513]">${{ number_format($reservation->balance_due, 2) }}</div>
+                                    <div class="text-[11px] text-[#39393b] font-mono">≈ {{ number_format($reservation->balance_due * 4100) }} KHR</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Instructions & Instant Simulation -->
                         <div class="flex-1 space-y-4">
-                            <h4 class="font-serif text-xl font-bold text-stone-900">Instant Cashless Payment</h4>
-                            <p class="text-sm text-stone-600 leading-relaxed">
+                            <h4 class="font-serif text-xl font-bold text-[#161513]">Instant Cashless Payment</h4>
+                            <p class="text-sm text-[#39393b] leading-relaxed">
                                 Open any Cambodian Banking App (ABA, ACLEDA, Wing, Canadia, Sathapana, etc.) and scan the Bakong KHQR code above to settle the remaining balance of <strong>${{ number_format($reservation->balance_due, 2) }}</strong>.
                             </p>
 
-                            <div class="p-4 bg-amber-50/70 rounded-xl border border-amber-200 text-xs text-amber-900">
+                            <div class="p-4 bg-[#f7f4ec] rounded-xl border border-[#e2ded5] text-xs text-[#161513]">
                                 💡 <strong>Testing Mode:</strong> You can simulate an instant mobile bank payment by clicking the button below:
                             </div>
 
@@ -270,16 +270,16 @@
             @endif
 
             <!-- Bottom Actions -->
-            <div class="pt-6 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
-                <a href="{{ route('home') }}" class="text-xs font-bold text-stone-600 hover:text-stone-900">
+            <div class="pt-6 border-t border-[#e2ded5] flex flex-wrap items-center justify-between gap-4">
+                <a href="{{ route('home') }}" class="text-xs font-bold text-[#39393b] hover:text-[#161513]">
                     &larr; Back to Home Page
                 </a>
 
                 <div class="flex items-center space-x-3">
-                    <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 bg-stone-100 hover:bg-stone-200 transition">
+                    <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold text-[#39393b] bg-[#f7f4ec] hover:bg-[#efeeec] transition">
                         Print Confirmation
                     </button>
-                    <a href="{{ route('rooms.index') }}" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-amber-700 hover:bg-amber-800 transition">
+                    <a href="{{ route('rooms.index') }}" class="px-4 py-2 rounded-xl text-xs font-bold text-[#161513] bg-[#ebbf7d] hover:bg-[#deaf6b] transition shadow-xs">
                         Book Another Room
                     </a>
                 </div>
